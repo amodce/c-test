@@ -1,16 +1,22 @@
 CC      ?= gcc
 CFLAGS  ?= -Wall -O2
-TARGET   = hello
+TARGETS  = hello fib
 
-all: $(TARGET)
+all: $(TARGETS)
 
-$(TARGET): hello.c
+hello: hello.c
 	$(CC) $(CFLAGS) -o $@ $<
 
-run: $(TARGET)
-	./$(TARGET)
+fib: fib.c
+	$(CC) $(CFLAGS) -o $@ $<
+
+run: hello
+	./hello
+
+run-fib: fib
+	./fib
 
 clean:
-	rm -f $(TARGET)
+	rm -f $(TARGETS)
 
-.PHONY: all run clean
+.PHONY: all run run-fib clean
